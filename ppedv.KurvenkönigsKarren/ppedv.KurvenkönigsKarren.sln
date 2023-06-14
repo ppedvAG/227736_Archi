@@ -5,6 +5,10 @@ VisualStudioVersion = 17.7.33808.371
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.KurvenkönigsKarren.Model", "ppedv.KurvenkönigsKarren.Model\ppedv.KurvenkönigsKarren.Model.csproj", "{BD38C3D6-4236-4F24-8294-005DD44D911B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.KurvenkönigsKarren.Data.Database", "ppedv.KurvenkönigsKarren.Data.Database\ppedv.KurvenkönigsKarren.Data.Database.csproj", "{22699242-D9CC-4517-A9E3-2694099DE5B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.KurvenkönigsKarren.Data.Database.Tests", "ppedv.KurvenkönigsKarren.Data.Database.Tests\ppedv.KurvenkönigsKarren.Data.Database.Tests.csproj", "{AE99B41E-C0CF-4B5B-9139-5DB6AFE08F62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BD38C3D6-4236-4F24-8294-005DD44D911B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD38C3D6-4236-4F24-8294-005DD44D911B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD38C3D6-4236-4F24-8294-005DD44D911B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22699242-D9CC-4517-A9E3-2694099DE5B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22699242-D9CC-4517-A9E3-2694099DE5B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22699242-D9CC-4517-A9E3-2694099DE5B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22699242-D9CC-4517-A9E3-2694099DE5B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE99B41E-C0CF-4B5B-9139-5DB6AFE08F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE99B41E-C0CF-4B5B-9139-5DB6AFE08F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE99B41E-C0CF-4B5B-9139-5DB6AFE08F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE99B41E-C0CF-4B5B-9139-5DB6AFE08F62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
