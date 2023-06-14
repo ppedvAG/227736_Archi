@@ -11,8 +11,12 @@ DbConnection con = factory.CreateConnection();
 con.ConnectionString = conString;
 con.Open();
 
-DbCommand dbCommand = factory.CreateCommand();
-dbCommand.Connection = con;
+con.CreateCommand();
+
+//DbCommand dbCommand = factory.CreateCommand();
+//dbCommand.Connection = con;
+
+DbCommand dbCommand = con.CreateCommand();
 dbCommand.CommandText = "SELECT * FROM Employees";
 
 var reader = dbCommand.ExecuteReader();
