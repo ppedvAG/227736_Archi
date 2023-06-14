@@ -50,7 +50,10 @@
                 schrank.Oberfläche = oberfläche;
                 return this;
             }
-
+            public Schrank Build()
+            {
+                return schrank;
+            }
         }
 
     }
