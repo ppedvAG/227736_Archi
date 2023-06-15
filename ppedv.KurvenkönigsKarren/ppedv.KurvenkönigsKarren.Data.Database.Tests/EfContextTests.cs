@@ -1,7 +1,7 @@
 using AutoFixture;
 using AutoFixture.Kernel;
 using FluentAssertions;
-using ppedv.KurvenkönigsKarren.Model;
+using ppedv.KurvenkönigsKarren.Model.DomainModel;
 using System.Reflection;
 
 namespace ppedv.KurvenkönigsKarren.Data.Database.Tests

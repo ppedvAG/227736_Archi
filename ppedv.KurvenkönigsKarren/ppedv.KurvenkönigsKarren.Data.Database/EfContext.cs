@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ppedv.KurvenkönigsKarren.Model;
+using ppedv.KurvenkönigsKarren.Model.DomainModel;
 
 namespace ppedv.KurvenkönigsKarren.Data.Database
 {

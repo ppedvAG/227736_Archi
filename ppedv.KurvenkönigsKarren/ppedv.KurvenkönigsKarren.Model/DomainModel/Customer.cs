@@ -1,4 +1,4 @@
-﻿namespace ppedv.KurvenkönigsKarren.Model
+﻿namespace ppedv.KurvenkönigsKarren.Model.DomainModel
 {
     public class Customer : Entity
     {

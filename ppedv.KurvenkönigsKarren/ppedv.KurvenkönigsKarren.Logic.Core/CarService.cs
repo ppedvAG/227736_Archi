@@ -1,0 +1,21 @@
+﻿using ppedv.KurvenkönigsKarren.Model.Contracts;
+using ppedv.KurvenkönigsKarren.Model.DomainModel;
+
+namespace ppedv.KurvenkönigsKarren.Logic.Core
+{
+    public class CarService
+    {
+        private readonly IRepository repo;
+
+        public CarService(IRepository repo)
+        {
+            this.repo = repo;
+        }
+
+        public bool IsCarAvailable(Car car, DateTime day)
+        {
+            return !repo.GetAll<Rent>().Any(x => x.Car.Id == car.Id && x.StartDate.Date <= day.Date
+                                                                    && (x.EndDate == null || x.EndDate.Value.Date >= day.Date));
+        }
+    }
+}
