@@ -60,11 +60,6 @@ namespace ppedv.KurvenkönigsKarren.UI.Desktop.ViewModels
 
         public SaveCommand SaveCommand { get; set; }
 
-        //todo kill
-        public CarsViewModel() : this(new Data.Database.EfRepository("Server=(localdb)\\mssqllocaldb;Database=KurvenKönig_Test;Trusted_Connection=true;"))
-        {
-
-        }
     }
 
     class SaveCommand : ICommand
