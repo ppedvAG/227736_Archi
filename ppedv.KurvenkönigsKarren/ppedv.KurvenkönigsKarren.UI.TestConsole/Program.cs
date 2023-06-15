@@ -30,6 +30,9 @@ var repo = container.Resolve<IRepository>();
 
 
 var carService = new CarService(repo);
+var demoService = new DemoService(repo);
+
+demoService.CrateDemoRents();
 
 
 var cars = repo.GetAll<Car>();
