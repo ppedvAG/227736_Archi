@@ -1,36 +1,50 @@
-﻿using ppedv.KurvenkönigsKarren.Model.Contracts;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ppedv.KurvenkönigsKarren.Model.Contracts;
 using ppedv.KurvenkönigsKarren.Model.DomainModel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace ppedv.KurvenkönigsKarren.UI.Desktop.ViewModels
 {
-    internal class CarsViewModel:INotifyPropertyChanged
+    internal class CarsViewModel : ObservableObject
     {
         IRepository repo;
         private Car selectedCar;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         public CarsViewModel(IRepository repo)
         {
             this.repo = repo;
 
-            CarList = new List<Car>(repo.GetAll<Car>());
-            SaveCommand = new SaveCommand(repo);
+            CarList = new ObservableCollection<Car>(repo.GetAll<Car>());
+            //SaveCommand = new SaveCommand(repo);
+            NewSaveCommand = new RelayCommand(repo.SaveAll);
+            NewCarCommand = new RelayCommand(UserWantsToCreateNewCar);
         }
 
-        public List<Car> CarList { get; set; }
+        private void UserWantsToCreateNewCar()
+        {
+            var car = new Car() { Color = "NEU", Model = "NEU NEU" };
+            repo.Add(car);
+            CarList.Add(car);
+            SelectedCar = car;
+        }
+
+        public ICommand NewSaveCommand { get; set; }
+        public ICommand NewCarCommand { get; set; }
+
+        public ObservableCollection<Car> CarList { get; set; }
         public Car SelectedCar
         {
-            get => selectedCar; 
+            get => selectedCar;
             set
             {
                 selectedCar = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedCar"));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PS"));
+                OnPropertyChanged("SelectedCar");
+                OnPropertyChanged(nameof(PS));
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedCar"));
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PS"));
             }
         }
 
