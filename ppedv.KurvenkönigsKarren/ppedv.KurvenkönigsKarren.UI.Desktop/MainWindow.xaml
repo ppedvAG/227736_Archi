@@ -1,0 +1,53 @@
+﻿<Window x:Class="ppedv.KurvenkönigsKarren.UI.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ppedv.KurvenkönigsKarren.UI.Desktop"
+        xmlns:views="clr-namespace:ppedv.KurvenkönigsKarren.UI.Desktop.Views"
+        mc:Ignorable="d" 
+        Title="MainWindow" Height="450" Width="600">
+    <DockPanel>
+
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Datei">
+                <MenuItem Header="Öffnen"/>
+                <Separator/>
+                <MenuItem Header="Export"/>
+                <MenuItem Header="Import"/>
+                <MenuItem Header="Report"/>
+            </MenuItem>
+            <MenuItem Header="Bearbeiten">
+                <MenuItem Header="🔪"/>
+                <Separator/>
+                <MenuItem Header="👾"/>
+                <MenuItem Header="🍪"/>
+                <MenuItem Header="🍻"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom" Height="22" Background="LimeGreen"/>
+
+        <TabControl>
+            <TabItem Header="Cars 🚗">
+                <views:CarsView/>
+            </TabItem>
+            <TabItem Header="Customers 👪">
+                <views:CustomersView/>
+            </TabItem>
+            <TabItem Header="Rents 📜">
+                <views:RentsView/>
+            </TabItem>
+
+            <TabItem Header="Binding test">
+                <StackPanel Margin="8">
+                    <TextBox Name="tb1" />
+                    <TextBox Text="{Binding ElementName=tb1,Path=Text,UpdateSourceTrigger=PropertyChanged}"
+                 Background="{Binding ElementName=tb1,Path=Text}"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+
+    </DockPanel>
+</Window>
