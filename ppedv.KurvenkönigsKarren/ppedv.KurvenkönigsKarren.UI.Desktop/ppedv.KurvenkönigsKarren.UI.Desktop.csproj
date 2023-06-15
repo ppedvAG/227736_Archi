@@ -7,4 +7,10 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ppedv.KurvenkönigsKarren.Data.Database\ppedv.KurvenkönigsKarren.Data.Database.csproj" />
+    <ProjectReference Include="..\ppedv.KurvenkönigsKarren.Logic.Core\ppedv.KurvenkönigsKarren.Logic.Core.csproj" />
+    <ProjectReference Include="..\ppedv.KurvenkönigsKarren.Model\ppedv.KurvenkönigsKarren.Model.csproj" />
+  </ItemGroup>
+
 </Project>

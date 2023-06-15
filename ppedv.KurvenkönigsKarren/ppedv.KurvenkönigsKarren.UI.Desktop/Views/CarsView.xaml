@@ -4,12 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ppedv.KurvenkönigsKarren.UI.Desktop.Views"
+             xmlns:viewmodels="clr-namespace:ppedv.KurvenkönigsKarren.UI.Desktop.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:CarsViewModel/>
+    </UserControl.DataContext>
     <DockPanel>
         <WrapPanel DockPanel.Dock="Top" Margin="8">
             <Button>Laden</Button>
-            <Button>Speichern</Button>
+            <Button Command="{Binding SaveCommand}">Speichern</Button>
             <Button>Neu</Button>
             <Button>Löschen</Button>
         </WrapPanel>
@@ -19,7 +23,8 @@
                 <ColumnDefinition Width="2"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <DataGrid />
+            <DataGrid ItemsSource="{Binding CarList}"
+                      SelectedItem="{Binding SelectedCar}"/>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
@@ -36,18 +41,22 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label>Model</Label>
+                <TextBox Grid.Column="1" Text="{Binding SelectedCar.Model}"/>
                 <Label Grid.Row="1">Manufacturer</Label>
-                <TextBox Grid.Row="1" Grid.Column="1"/>
-                <Label Grid.Row="2">KW</Label>
-                <TextBox Grid.Row="2" Grid.Column="1"/>
+                <TextBox Text="{Binding SelectedCar.Manufacturer.Name}" Grid.Row="1" Grid.Column="1"/>
+                
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <TextBlock Text="{Binding PS,StringFormat='KW (PS:{0})'}"/>
+                </StackPanel>
+                <TextBox Text="{Binding SelectedCar.KW}" Grid.Row="2" Grid.Column="1"/>
                 <Label Grid.Row="3">Color</Label>
-                <TextBox Grid.Row="3" Grid.Column="1"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedCar.Color}"/>
                 <Label Grid.Row="4">Seats</Label>
-                <TextBox Grid.Row="4" Grid.Column="1"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedCar.Seats}"/>
                 <Label Grid.Row="5">Transmission</Label>
-                <TextBox Grid.Row="5" Grid.Column="1"/>
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SelectedCar.Transmission}"/>
                 <GroupBox Grid.Row="6" Grid.ColumnSpan="2" Header="Rents">
-                    <ListBox/>
+                    <DataGrid ItemsSource="{Binding SelectedCar.Rents}" />
                 </GroupBox>
             </Grid>
         </Grid>
