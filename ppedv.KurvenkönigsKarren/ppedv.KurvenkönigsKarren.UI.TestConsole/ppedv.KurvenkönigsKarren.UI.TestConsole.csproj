@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ppedv.KurvenkönigsKarren.Data.Database\ppedv.KurvenkönigsKarren.Data.Database.csproj" />
     <ProjectReference Include="..\ppedv.KurvenkönigsKarren.Logic.Core\ppedv.KurvenkönigsKarren.Logic.Core.csproj" />
     <ProjectReference Include="..\ppedv.KurvenkönigsKarren.Model\ppedv.KurvenkönigsKarren.Model.csproj" />
