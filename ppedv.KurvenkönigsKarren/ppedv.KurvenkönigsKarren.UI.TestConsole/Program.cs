@@ -20,22 +20,22 @@ string conString = "Server=(localdb)\\mssqllocaldb;Database=KurvenKönig_Test;Tr
 //Di per AutoFac
 var builder = new ContainerBuilder();
 //builder.RegisterType<EfRepository>().As<IRepository>();
-builder.RegisterType<EfRepository>().AsImplementedInterfaces().WithParameter("conString", conString);
+builder.RegisterType<EfUnitOfWork>().AsImplementedInterfaces().WithParameter("conString", conString);
 var container = builder.Build();
 
-var repo = container.Resolve<IRepository>();
+var uow = container.Resolve<IUnitOfWork>();
 
 //Dependency Injection per code
 //IRepository repo = new EfRepository(conString);
 
 
-var carService = new CarService(repo);
-var demoService = new DemoService(repo);
+var carService = new CarService(uow);
+var demoService = new DemoService(uow);
 
 demoService.CrateDemoRents();
 
 
-var cars = repo.Query<Car>().Where(x => x.KW > 490);
+var cars = uow.CarRepository.Query().Where(x => x.KW > 490);
 foreach (var car in cars.ToList())
 {
     Console.WriteLine($"{car.Manufacturer?.Name} {car.Model} {(carService.IsCarAvailable(car, DateTime.Now) ? "✔️" : "❌")}");

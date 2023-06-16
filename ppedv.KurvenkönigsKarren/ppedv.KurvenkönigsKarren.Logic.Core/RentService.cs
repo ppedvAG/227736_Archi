@@ -5,12 +5,12 @@ namespace ppedv.KurvenkönigsKarren.Logic.Core
 {
     public class RentService
     {
-        private readonly IRepository repository;
+        private readonly IUnitOfWork unitOfWork;
         private readonly ICarService carService;
 
-        public RentService(IRepository repository, ICarService carService)
+        public RentService(IUnitOfWork unitOfWork, ICarService carService)
         {
-            this.repository = repository;
+            this.unitOfWork = unitOfWork;
             this.carService = carService;
         }
 
@@ -35,8 +35,8 @@ namespace ppedv.KurvenkönigsKarren.Logic.Core
                 Car = car,  
             };
 
-            repository.Add(rent);
-            repository.SaveAll();
+            unitOfWork.RentRepository.Add(rent);
+            unitOfWork.SaveAll();
         }
     }
 }

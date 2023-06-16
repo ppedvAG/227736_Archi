@@ -34,7 +34,7 @@ namespace ppedv.KurvenkönigsKarren.UI.Desktop
 
             string conString = "Server=(localdb)\\mssqllocaldb;Database=KurvenKönig_Test;Trusted_Connection=true;";
 
-            services.AddSingleton<IRepository>(x => new Data.Database.EfRepository(conString));
+            services.AddSingleton<IUnitOfWork>(x => new Data.Database.EfUnitOfWork(conString));
             services.AddSingleton<CarsViewModel>();
 
             return services.BuildServiceProvider();

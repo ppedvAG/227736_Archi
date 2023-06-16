@@ -7,17 +7,17 @@ namespace ppedv.KurvenkönigsKarren.UI.Web.Controllers
 {
     public class CarController : Controller
     {
-        private readonly IRepository repo;
+        private readonly IUnitOfWork uow;
 
-        public CarController(IRepository repo)
+        public CarController(IUnitOfWork uow)
         {
-            this.repo = repo;
+            this.uow = uow;
         }
 
         // GET: CarController
         public ActionResult Index()
         {
-            var cars = repo.Query<Car>();
+            var cars = uow.CarRepository.Query();
 
             return View(cars);
         }

@@ -11,49 +11,49 @@ namespace ppedv.KurvenkönigsKarren.API.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
-        private readonly IRepository repo;
+        private readonly IUnitOfWork uow;
 
-        public CarsController(IRepository repo)
+        public CarsController(IUnitOfWork uow)
         {
-            this.repo = repo;
+            this.uow = uow;
         }
 
         // GET: api/<CarsController>
         [HttpGet]
         public IEnumerable<CarDTO> Get()
         {
-            return repo.Query<Car>().Select(x => CarMapper.MapToCarDTO(x));
+            return uow.CarRepository.Query().ToList().Select(x => CarMapper.MapToCarDTO(x));
         }
 
         // GET api/<CarsController>/5
         [HttpGet("{id}")]
         public CarDTO Get(int id)
         {
-            return CarMapper.MapToCarDTO(repo.GetById<Car>(id));
+            return CarMapper.MapToCarDTO(uow.CarRepository.GetById(id));
         }
 
         // POST api/<CarsController>
         [HttpPost]
         public void Post([FromBody] CarDTO car)
         {
-            repo.Add(CarMapper.MapToCar(car));
-            repo.SaveAll();
+            uow.CarRepository.Add(CarMapper.MapToCar(car));
+            uow.SaveAll();
         }
 
         // PUT api/<CarsController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] CarDTO car)
         {
-            repo.Update(CarMapper.MapToCar(car));
-            repo.SaveAll();
+            uow.CarRepository.Update(CarMapper.MapToCar(car));
+            uow.SaveAll();
         }
 
         // DELETE api/<CarsController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            repo.Delete(repo.GetById<Car>(id));
-            repo.SaveAll();
+            uow.CarRepository.Delete(uow.CarRepository.GetById(id));
+            uow.SaveAll();
         }
     }
 }

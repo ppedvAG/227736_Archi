@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IRepository>(x => new ppedv.KurvenkönigsKarren.Data.Database.EfRepository(conString));
+builder.Services.AddScoped<IUnitOfWork>(x => new ppedv.KurvenkönigsKarren.Data.Database.EfUnitOfWork(conString));
 
 var app = builder.Build();
 

@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IRepository>(x => new EfRepository(conString));
+builder.Services.AddScoped<IUnitOfWork>(x => new EfUnitOfWork(conString));
 
 var app = builder.Build();
 

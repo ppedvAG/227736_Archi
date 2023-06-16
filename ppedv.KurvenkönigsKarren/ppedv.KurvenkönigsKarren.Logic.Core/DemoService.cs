@@ -6,11 +6,11 @@ namespace ppedv.KurvenkönigsKarren.Logic.Core
 {
     public class DemoService
     {
-        private readonly IRepository repo;
+        private readonly IUnitOfWork unitOfWork;
 
-        public DemoService(IRepository repo)
+        public DemoService(IUnitOfWork unitOfWork)
         {
-            this.repo = repo;
+            this.unitOfWork = unitOfWork;
 
             string lang = "de";
             int seed = 4;
@@ -58,9 +58,9 @@ namespace ppedv.KurvenkönigsKarren.Logic.Core
             var cars = CarFaker.Generate(amount);
             foreach (var car in cars)
             {
-               repo.Add(car);
+               unitOfWork.CarRepository.Add(car);
             }
-            repo.SaveAll();
+            unitOfWork.SaveAll();
         }
 
         public Faker<Car> CarFaker { get; }

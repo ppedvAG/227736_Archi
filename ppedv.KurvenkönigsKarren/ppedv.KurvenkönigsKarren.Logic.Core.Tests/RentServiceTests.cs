@@ -10,28 +10,33 @@ namespace ppedv.KurvenkönigsKarren.Logic.Core.Tests
         [Fact]
         public void CreateNewRentForCar_can_create()
         {
-            var repoMock = new Mock<IRepository>();
+            var repoMock = new Mock<IRepository<Rent>>();
+            var uowMock = new Mock<IUnitOfWork>();
+            uowMock.Setup(x=>x.RentRepository).Returns(repoMock.Object);
+            
             var carServiceMock = new Mock<ICarService>();
             carServiceMock.Setup(x => x.IsCarAvailable(It.IsAny<Car>(), It.IsAny<DateTime>())).Returns(true);
 
-            var rentService = new RentService(repoMock.Object, carServiceMock.Object);
+            var rentService = new RentService(uowMock.Object, carServiceMock.Object);
             var car = new Car() { Color = "blau" };
             var customer = new Customer() { Name = "Peter" };
 
             rentService.CreateNewRentForCar(car, customer, DateTime.Now.AddDays(1), "Hier");
 
-            repoMock.Verify(x => x.Add<Rent>(It.IsAny<Rent>()), Times.Once);
-            repoMock.Verify(x => x.SaveAll(), Times.Once);
+            repoMock.Verify(x => x.Add(It.IsAny<Rent>()), Times.Once);
+            uowMock.Verify(x => x.SaveAll(), Times.Once);
         }
 
         [Fact]
         public void CreateNewRentForCar_car_not_available_throws_InvalidOpException()
         {
-            var repoMock = new Mock<IRepository>();
+            var repoMock = new Mock<IRepository<Rent>>();
+            var uowMock = new Mock<IUnitOfWork>();
+            uowMock.Setup(x => x.RentRepository).Returns(repoMock.Object);
             var carServiceMock = new Mock<ICarService>();
             carServiceMock.Setup(x => x.IsCarAvailable(It.IsAny<Car>(), It.IsAny<DateTime>())).Returns(false);
 
-            var rentService = new RentService(repoMock.Object, carServiceMock.Object);
+            var rentService = new RentService(uowMock.Object, carServiceMock.Object);
             var car = new Car() { Color = "blau" };
             var customer = new Customer() { Name = "Peter" };
 
@@ -43,11 +48,13 @@ namespace ppedv.KurvenkönigsKarren.Logic.Core.Tests
         [Fact]
         public void CreateNewRentForCar_startdate_in_the_past_throws_ArgumentException()
         {
-            var repoMock = new Mock<IRepository>();
+            var repoMock = new Mock<IRepository<Rent>>();
+            var uowMock = new Mock<IUnitOfWork>();
+            uowMock.Setup(x => x.RentRepository).Returns(repoMock.Object);
             var carServiceMock = new Mock<ICarService>();
             carServiceMock.Setup(x => x.IsCarAvailable(It.IsAny<Car>(), It.IsAny<DateTime>())).Returns(true);
 
-            var rentService = new RentService(repoMock.Object, carServiceMock.Object);
+            var rentService = new RentService(uowMock.Object, carServiceMock.Object);
             var car = new Car() { Color = "blau" };
             var customer = new Customer() { Name = "Peter" };
 
@@ -59,11 +66,13 @@ namespace ppedv.KurvenkönigsKarren.Logic.Core.Tests
         [Fact]
         public void CreateNewRentForCar_startdate_in_the_throws_ArgumentException()
         {
-            var repoMock = new Mock<IRepository>();
+            var repoMock = new Mock<IRepository<Rent>>();
+            var uowMock = new Mock<IUnitOfWork>();
+            uowMock.Setup(x => x.RentRepository).Returns(repoMock.Object);
             var carServiceMock = new Mock<ICarService>();
             carServiceMock.Setup(x => x.IsCarAvailable(It.IsAny<Car>(), It.IsAny<DateTime>())).Returns(true);
 
-            var rentService = new RentService(repoMock.Object, carServiceMock.Object);
+            var rentService = new RentService(uowMock.Object, carServiceMock.Object);
             var car = new Car() { Color = "blau" };
             var customer = new Customer() { Name = "Peter" };
 
@@ -78,11 +87,13 @@ namespace ppedv.KurvenkönigsKarren.Logic.Core.Tests
         [InlineData(-1, true)]
         public void CreateNewRentForCar_startdate_tests(int addDays, bool shouldThrow)
         {
-            var repoMock = new Mock<IRepository>();
+            var repoMock = new Mock<IRepository<Rent>>();
+            var uowMock = new Mock<IUnitOfWork>();
+            uowMock.Setup(x => x.RentRepository).Returns(repoMock.Object);
             var carServiceMock = new Mock<ICarService>();
             carServiceMock.Setup(x => x.IsCarAvailable(It.IsAny<Car>(), It.IsAny<DateTime>())).Returns(true);
 
-            var rentService = new RentService(repoMock.Object, carServiceMock.Object);
+            var rentService = new RentService(uowMock.Object, carServiceMock.Object);
             var car = new Car() { Color = "blau" };
             var customer = new Customer() { Name = "Peter" };
 

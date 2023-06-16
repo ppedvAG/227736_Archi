@@ -10,23 +10,23 @@ namespace ppedv.KurvenkönigsKarren.UI.Desktop.ViewModels
 {
     internal class CarsViewModel : ObservableObject
     {
-        IRepository repo;
+        IUnitOfWork uow;
         private Car selectedCar;
 
-        public CarsViewModel(IRepository repo)
+        public CarsViewModel(IUnitOfWork uow)
         {
-            this.repo = repo;
+            this.uow = uow;
 
-            CarList = new ObservableCollection<Car>(repo.Query<Car>());
+            CarList = new ObservableCollection<Car>(uow.CarRepository.Query());
             //SaveCommand = new SaveCommand(repo);
-            NewSaveCommand = new RelayCommand(repo.SaveAll);
+            NewSaveCommand = new RelayCommand(uow.SaveAll);
             NewCarCommand = new RelayCommand(UserWantsToCreateNewCar);
         }
 
         private void UserWantsToCreateNewCar()
         {
             var car = new Car() { Color = "NEU", Model = "NEU NEU" };
-            repo.Add(car);
+            uow.CarRepository.Add(car);
             CarList.Add(car);
             SelectedCar = car;
         }
@@ -64,7 +64,7 @@ namespace ppedv.KurvenkönigsKarren.UI.Desktop.ViewModels
 
     class SaveCommand : ICommand
     {
-        private readonly IRepository repo;
+        private readonly IUnitOfWork uow;
 
         public event EventHandler? CanExecuteChanged;
 
@@ -73,14 +73,14 @@ namespace ppedv.KurvenkönigsKarren.UI.Desktop.ViewModels
             return true;
         }
 
-        public SaveCommand(IRepository repo)
+        public SaveCommand(IUnitOfWork uow)
         {
-            this.repo = repo;
+            this.uow = uow;
         }
 
         public void Execute(object? parameter)
         {
-            repo.SaveAll();
+            uow.SaveAll();
         }
     }
 }
