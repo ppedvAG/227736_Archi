@@ -2,14 +2,6 @@
 
 namespace ppedv.KurvenkönigsKarren.Model.Contracts
 {
-    public interface IUnitOfWork
-    {
-        IRepository<Car> CarRepository { get;  }
-        IRepository<Customer> CustomerRepository { get;  }
-        IRepository<Rent> RentRepository { get;  }
-
-        void SaveAll();
-    }
 
     public interface IRepository<T> where T : Entity
     {
@@ -20,4 +12,6 @@ namespace ppedv.KurvenkönigsKarren.Model.Contracts
         void Update(T entity);
         void Delete(T entity);
     }
+
+
 }
