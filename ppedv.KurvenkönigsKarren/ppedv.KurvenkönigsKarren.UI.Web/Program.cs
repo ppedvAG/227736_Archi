@@ -1,8 +1,11 @@
 using ppedv.KurvenkönigsKarren.Model.Contracts;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
  string conString = "Server=(localdb)\\mssqllocaldb;Database=KurvenKönig_Test;Trusted_Connection=true;";
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
