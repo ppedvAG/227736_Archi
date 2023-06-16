@@ -3,7 +3,7 @@ using ppedv.KurvenkönigsKarren.Model.DomainModel;
 
 namespace ppedv.KurvenkönigsKarren.Logic.Core
 {
-    public class CarService
+    public class CarService : ICarService
     {
         private readonly IRepository repo;
 
