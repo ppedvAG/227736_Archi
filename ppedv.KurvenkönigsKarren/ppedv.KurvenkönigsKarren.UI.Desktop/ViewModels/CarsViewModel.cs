@@ -17,7 +17,7 @@ namespace ppedv.KurvenkönigsKarren.UI.Desktop.ViewModels
         {
             this.repo = repo;
 
-            CarList = new ObservableCollection<Car>(repo.GetAll<Car>());
+            CarList = new ObservableCollection<Car>(repo.Query<Car>());
             //SaveCommand = new SaveCommand(repo);
             NewSaveCommand = new RelayCommand(repo.SaveAll);
             NewCarCommand = new RelayCommand(UserWantsToCreateNewCar);

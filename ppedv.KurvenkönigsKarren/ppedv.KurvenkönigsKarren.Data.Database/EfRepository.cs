@@ -18,9 +18,9 @@ namespace ppedv.KurvenkönigsKarren.Data.Database
         {
             context.Remove<T>(entity);
         }
-        public IEnumerable<T> GetAll<T>() where T : Entity
+        public IQueryable<T> Query<T>() where T : Entity
         {
-            return context.Set<T>().ToList();
+            return context.Set<T>();
         }
         public T? GetById<T>(int id) where T : Entity
         {

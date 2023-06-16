@@ -22,7 +22,7 @@ namespace ppedv.KurvenkönigsKarren.API.Controllers
         [HttpGet]
         public IEnumerable<CarDTO> Get()
         {
-            return repo.GetAll<Car>().Select(x => CarMapper.MapToCarDTO(x));
+            return repo.Query<Car>().Select(x => CarMapper.MapToCarDTO(x));
         }
 
         // GET api/<CarsController>/5

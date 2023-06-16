@@ -17,7 +17,7 @@ namespace ppedv.KurvenkönigsKarren.UI.Web.Controllers
         // GET: CarController
         public ActionResult Index()
         {
-            var cars = repo.GetAll<Car>();
+            var cars = repo.Query<Car>();
 
             return View(cars);
         }

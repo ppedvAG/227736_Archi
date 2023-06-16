@@ -35,8 +35,8 @@ var demoService = new DemoService(repo);
 demoService.CrateDemoRents();
 
 
-var cars = repo.GetAll<Car>();
-foreach (var car in cars)
+var cars = repo.Query<Car>().Where(x => x.KW > 490);
+foreach (var car in cars.ToList())
 {
     Console.WriteLine($"{car.Manufacturer?.Name} {car.Model} {(carService.IsCarAvailable(car, DateTime.Now) ? "✔️" : "❌")}");
     foreach (var r in car.Rents)
